@@ -1,15 +1,16 @@
-// Step 5.1: Main application file
-#include "PasswordManagerTUI.h"
+// Step 1: Main application file - SIMPLIFIED VERSION
+#include "SimplePasswordManager.h"
 #include <iostream>
 
 int main() {
     try {
-        // Step 5.2: Create and run TUI application
-        PasswordManagerTUI app;
+        std::cout << "Starting Password Manager...\n";
+        SimplePasswordManager app;
         app.run();
     } catch (const std::exception& e) {
-        // Step 5.3: Error handling
         std::cerr << "Error: " << e.what() << std::endl;
+        std::cout << "Press any key to exit...";
+        std::cin.get();
         return 1;
     }
     
