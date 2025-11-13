@@ -11,10 +11,9 @@
 - build.bat
 
 Method 2: Manual compilation:
-- g++ -std=c++17 -c main.cpp -o main.o
-- g++ -std=c++17 -c PasswordManager.cpp -o PasswordManager.o  
-- g++ -std=c++17 -c PasswordManagerTUI.cpp -o PasswordManagerTUI.o
-- g++ main.o PasswordManager.o PasswordManagerTUI.o -o password_manager.exe -luser32
+- g++ -std=c++17 -O2 -static -static-libgcc -static-libstdc++ -c PasswordManager.cpp -o PasswordManager.o
+- g++ -std=c++17 -O2 -static -static-libgcc -static-libstdc++ -c SimplePasswordManager.cpp -o SimplePasswordManager.o
+- g++ -std=c++17 -O2 -static -static-libgcc -static-libstdc++ -c main.cpp -o main.o
 
 # Run
 - password_manager.exe
