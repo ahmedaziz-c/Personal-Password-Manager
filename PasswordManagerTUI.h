@@ -2,6 +2,8 @@
 #define PASSWORD_MANAGER_TUI_H
 
 #include "PasswordManager.h"
+#include <string>
+#include <vector>
 
 // Windows-compatible TUI implementation
 class PasswordManagerTUI {
@@ -9,7 +11,7 @@ private:
     PasswordManager manager;
     
     // UI State
-    int currentSelection;
+    size_t currentSelection;  // Changed from int to size_t to fix warnings
     bool leftPanelActive;
     std::vector<std::string> displayItems;
     std::string statusMessage;
@@ -25,9 +27,9 @@ private:
     void clearScreen();
     void displayUI();
     
-    // Step 3.4: Panel rendering
-    void renderLeftPanel();
-    void renderRightPanel();
+    // Step 3.4: Panel rendering - ADDED MISSING DECLARATIONS
+    void renderLeftPanelLine(int line);
+    void renderRightPanelLine(int line);
     void renderStatusBar();
     
     // Step 3.5: Input handling
