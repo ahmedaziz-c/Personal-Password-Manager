@@ -3,7 +3,7 @@
 #include <conio.h>  // Windows console input
 #include <windows.h> // Windows API for clipboard
 
-// Step 4.1: Constructor
+// Step 4.1: Constructor - FIXED: changed currentSelection to size_t
 PasswordManagerTUI::PasswordManagerTUI() 
     : currentSelection(0), leftPanelActive(true), 
       statusMessage("Welcome to Password Manager - F2:New F3:Edit F4:GenPwd Tab:Switch") {}
@@ -48,7 +48,7 @@ void PasswordManagerTUI::displayUI() {
     // Calculate positions for dual panels
     int panelHeight = 15;
     
-    // Render both panels side by side
+    // Render both panels side by side - FIXED: Now these functions are declared
     for (int i = 0; i < panelHeight; i++) {
         std::cout << "| ";
         renderLeftPanelLine(i);
@@ -67,16 +67,16 @@ void PasswordManagerTUI::displayUI() {
     std::cout << "\n          [F3] Edit  [F4] Generate Password  [C] Copy  [Q] Quit\n";
 }
 
-// Step 4.6: Render left panel line
+// Step 4.6: Render left panel line - FIXED: Added proper implementation
 void PasswordManagerTUI::renderLeftPanelLine(int line) {
-    int panelWidth = 27;
+    const int panelWidth = 27;
     std::string content = "";
     
     if (line == 0) {
         content = "=== SERVICES ===";
     } else if (line - 2 < static_cast<int>(displayItems.size()) && line >= 2) {
         int index = line - 2;
-        if (index == currentSelection && leftPanelActive) {
+        if (index == static_cast<int>(currentSelection) && leftPanelActive) {
             content = "> " + displayItems[index];
         } else {
             content = "  " + displayItems[index];
@@ -84,13 +84,17 @@ void PasswordManagerTUI::renderLeftPanelLine(int line) {
     }
     
     // Pad and truncate to fit panel
-    content.resize(panelWidth, ' ');
+    if (content.length() > panelWidth) {
+        content = content.substr(0, panelWidth);
+    } else {
+        content.append(panelWidth - content.length(), ' ');
+    }
     std::cout << content;
 }
 
-// Step 4.7: Render right panel line
+// Step 4.7: Render right panel line - FIXED: Added proper implementation
 void PasswordManagerTUI::renderRightPanelLine(int line) {
-    int panelWidth = 27;
+    const int panelWidth = 27;
     std::string content = "";
     
     if (currentSelection < displayItems.size()) {
@@ -121,7 +125,11 @@ void PasswordManagerTUI::renderRightPanelLine(int line) {
     }
     
     // Pad and truncate to fit panel
-    content.resize(panelWidth, ' ');
+    if (content.length() > panelWidth) {
+        content = content.substr(0, panelWidth);
+    } else {
+        content.append(panelWidth - content.length(), ' ');
+    }
     std::cout << content;
 }
 
@@ -130,7 +138,7 @@ void PasswordManagerTUI::renderStatusBar() {
     std::cout << "\nSTATUS: " << statusMessage;
 }
 
-// Step 4.9: Handle keyboard input
+// Step 4.9: Handle keyboard input - FIXED: size_t comparisons
 void PasswordManagerTUI::handleInput() {
     if (_kbhit()) {
         int ch = _getch();
@@ -228,7 +236,7 @@ void PasswordManagerTUI::createNewEntry() {
     updateDisplayItems();
 }
 
-// Step 4.12: Edit current entry
+// Step 4.12: Edit current entry - FIXED: size_t comparison
 void PasswordManagerTUI::editCurrentEntry() {
     if (currentSelection >= manager.getAllParentIDs().size()) return;
     
