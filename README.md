@@ -17,3 +17,4 @@ Method 2: Manual compilation:
 
 # Run
 - password_manager.exe
+- https://github.com/ahmedaziz-c/Personal-Password-Manager/releases
