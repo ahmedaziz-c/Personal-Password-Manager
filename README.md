@@ -1,3 +1,4 @@
+<img width="437" height="333" alt="Screenshot 2025-11-13 214808" src="https://github.com/user-attachments/assets/a8cfa590-2827-403f-a715-fc0bd84abc6a" /> <br>
 # Plug and Play
 - Double cick Password-Manager.exe and enjoy.
 - Windows version is a portable program at the moment. No fuss for installations etc.
