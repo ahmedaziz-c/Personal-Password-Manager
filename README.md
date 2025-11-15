@@ -22,4 +22,4 @@
 
 ## Run
 - password_manager.exe
-- https://github.com/ahmedaziz-c/Personal-Password-Manager/releases
+- https://github.com/ahmedaziz-c/Personal-Password-Manager/releases/tag/SimplePasswordManager
